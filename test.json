@@ -1,0 +1,36 @@
+{
+"functions":
+[
+{
+"name":"main",
+"init_list":
+[
+    {
+    "init_type":"INT",
+    "init_name":"A"
+
+    },
+    {
+    "init_type":"INT",
+    "init_name":"B"
+    }
+],
+"control_structure":
+{
+    "statement":"IF",
+    "condition":"a>0",
+    "condition_type":"GREATER",
+    "condition_left":"A",
+    "condition_right":0,
+    "right_child":
+        {
+        "statement":"IF",
+        "condition":"a<b",
+        "condition_type":"LESS",
+        "condition_left":"A",
+        "condition_right":"B"
+        }
+    }
+}
+]
+}

@@ -1,0 +1,64 @@
+{
+    "functions":
+    [
+    {
+    "func_name":"insertion_sort",
+    "return_type":"void",
+"arguments":[{"line":"int *x","init_type":"int_ptr","name":"*x"},
+{"line":"int n","init_type":"int","name":"n"}],
+    "control_structure":
+        {
+        "line":"for (int i = 1; i < n; i++)",
+        "statement":"for",
+        "init_type":"INT",
+        "init_name":"i",
+        "init":1,
+        "condition":"i<n",
+        "condition_type":"<",
+        "condition_left":"i",
+        "condition_right":"n",
+        "loop_iteration":"i++",
+            "right_child":
+            {
+            "line":"for (int j = i; j > 0 && x[j - 1] > x[j]; j--)",
+            "statement":"for",
+            "init_type":"int",
+            "init_name":"j",
+            "init":"i",
+            "condition":"j > 0 && x[j - 1] > x[j]",
+            "condition_type":"&&",
+            "condition_left":
+                    {
+                    "condition":"j > 0",
+                    "condition_type":">",
+                    "condition_left":"j",
+                    "condition_right":"0"
+                    },
+            "condition_right":
+                    {"condition":"x[j - 1] > x[j]",
+                    "condition_type":">",
+                    "condition_left":"x[j - 1]",
+                    "condition_right":"x[j]"
+                    },
+            "loop_iteration":"j--"
+            }
+       }
+    },
+    {
+    "name":"main",
+        "control_structure":
+        {
+        "line":"int arr[5] = {10,4,2,42,3};",
+        "init_type":"INT_PTR",
+        "init_name":"arr",
+        "init":[10,4,2,42,3],
+            "right_child":
+            {
+            "line":"insertion_sort(arr, 5);",
+            "init_type":"CALL_FUNCTION",
+            "func_name":"insertion_sort",
+            "arguments":[{"init_type":"int_ptr","name":"arr"},{"init_type":"int","name":"n","init":5}]
+            }
+        }
+     }]
+}

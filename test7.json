@@ -1,0 +1,75 @@
+{
+    "functions":
+    [
+    {
+    "name":"main",
+    "init_list":
+    [
+        {
+        "init_type":"INT",
+        "init_name":"A"
+
+        },
+        {
+        "init_type":"INT",
+        "init_name":"B"
+        },
+        {
+        "init_type":"INT",
+        "init_name":"C"
+        }
+    ],
+    "control_structure":
+    {
+        "statement":"IF",
+        "condition":"C > B && B > A && A < 0",
+        "condition_type":"AND",
+        "condition_left":
+        {
+        "condition_type":"GREATER",
+        "condition_left":"C",
+        "condition_right":"B"
+        },
+        "condition_right":
+        {
+        "condition_type":"AND",
+        "condition_left":
+        {
+        "condition_type":"GREATER",
+        "condition_left":"B",
+        "condition_right":"A"
+        },
+        "condition_right":
+        {
+        "condition_type":"LESS",
+        "condition_left":"A",
+        "condition_right":0
+        }
+        }
+        ,
+        "right_child":
+            {
+            "action":"C=C*B",
+            "operation":"ASSIGMENT",
+            "assigment_left":"C",
+            "assigment_right":
+            {
+            "operation":"MULTIPLY",
+            "action_left":"C",
+            "action_right":"B"
+            },
+            "right_child":
+            {
+
+                "statement":"IF",
+                "condition":"C > 0",
+                "condition_type":"GREATER",
+                "condition_left":"C",
+                "condition_right":0
+            }
+            }
+        }
+    }
+    ]
+    }
+
