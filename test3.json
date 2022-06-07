@@ -13,26 +13,15 @@
         {
         "init_type":"INT",
         "init_name":"B"
-        },
-        {
-        "init_type":"INT",
-        "init_name":"C"
         }
     ],
     "control_structure":
     {
         "statement":"IF",
-        "condition":"A>0&&C",
-        "condition_type":"AND",
-        "condition_left":
-        {
-        "statement":"IF",
         "condition":"A>0",
         "condition_type":"GREATER",
         "condition_left":"A",
-        "condition_right":0
-        },
-        "condition_right":"C",
+        "condition_right":0,
         "right_child":
             {
             "statement":"IF",
@@ -43,17 +32,10 @@
                 "right_child":
                 {
             "statement":"IF",
-            "condition":"C==0",
-            "condition_type":"EQUAL",
-            "condition_left":"C",
+            "condition":"B>0",
+            "condition_type":"GREATER",
+            "condition_left":"B",
             "condition_right":0,
-            "right_child":
-            {
-            "action":"A=B",
-            "operation":"ASSIGMENT",
-            "assigment_left":"A",
-            "assigment_right":"B"
-            },
             "left_child":
             {
                 "statement":"IF",

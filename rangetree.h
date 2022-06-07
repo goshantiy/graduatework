@@ -4,7 +4,7 @@
 #include <QPair>
 #include <QStack>
 #include <QMap>
-#include <QHash>
+#include <QMap>
 #include <QJsonObject>
 #include <QJsonDocument>
 #include <QJsonArray>
@@ -17,18 +17,17 @@ private:
     class Range
     {
     public:
-        QString _name;
-        QPair<QPair<bool,QString>,QPair<bool,QString> > _range;
-        Range(QString name, QPair<QPair<bool,QString>,QPair<bool,QString> >);// bool   0 - ) 1 - ]
+        QPair<QPair<bool,QJsonValue>,QPair<bool,QJsonValue> > _range;
+        Range(QPair< QPair<bool,QJsonValue>,QPair<bool,QJsonValue> >);// bool   0 - ) 1 - ]
     };
 
     class Node
     {
     public:
-        Node(QString,QList<Range> trueRanges,QList<Range> falseRanges);
+        Node(QString,QMultiMap<QString,Range>,QMultiMap<QString,Range>);
         QString _statement;
-        QList<Range> true_ranges;
-        QList<Range> false_ranges;
+        QMultiMap<QString,Range> true_ranges;
+        QMultiMap<QString,Range> false_ranges;
         Node *left;
         Node *right;
     };
@@ -73,14 +72,18 @@ private:
         ASSIGMENT,
         MOD
     };
+    enum class problem
+    {
+       PROBLEM
+    };
 
-    QHash<QString,statemens> STATEMENTS
+    QMap<QString,statemens> STATEMENTS
     {
         {"FOR",statemens::FOR},
         {"IF",statemens::IF},
         {"WHILE",statemens::WHILE}
     };
-    QHash<QString,init_type> INIT_TYPE
+    QMap<QString,init_type> INIT_TYPE
     {
         {"CALL_FUNCTION",init_type::CALL_FUNCTION},
         {"INT",init_type::INT},
@@ -110,7 +113,7 @@ private:
       {condition_type::GREATER_EQUAL,condition_type::LESS},
       {condition_type::LESS,condition_type::GREATER_EQUAL}
     };
-    QHash<QString,operations> OPERATIONS
+    QMap<QString,operations> OPERATIONS
     {
         {"PLUS",operations::PLUS},
         {"MINUS",operations::MINUS},
@@ -125,11 +128,11 @@ private:
     QJsonDocument _doc;
     QJsonParseError err;
     QJsonObject _function;
-    QHash<QString, init_type> init_map;//словарь инициализаций(если переменная инициализирована в JSON)
+    QMap<QString, init_type> init_map;//словарь инициализаций(если переменная инициализирована в JSON)
     QMap<QString,int> int_map;
     QMap<QString,double> double_map;
-    QHash<QString,QVector<int> > int_ptr_map;
-    QHash<QString,QVector<double> > double_ptr_map;
+    QMap<QString,QVector<int> > int_ptr_map;
+    QMap<QString,QVector<double> > double_ptr_map;
 public:
     RangeTree();
     ~RangeTree();
@@ -142,6 +145,7 @@ public:
     Node* rangeAnalyze(QJsonObject,bool);
     void initRanges();
     void clear(Node*);
+    void printRanges(Node*);
 };
 
 #endif // RANGETREE_H
